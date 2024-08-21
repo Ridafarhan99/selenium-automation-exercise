@@ -6,6 +6,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.testng.annotations.BeforeSuite;
+import com.mystore.actiondrivers.Action;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -43,5 +44,10 @@ public class BaseClass {
             driver = new InternetExplorerDriver();
         }
 
+        Action action = new Action();
+        action.implicitWait(driver, 10);
+        action.pageLoadTimeOut(driver, 30);
+
+        driver.get(props.getProperty("url"));
     }
 }
