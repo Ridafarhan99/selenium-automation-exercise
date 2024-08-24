@@ -643,7 +643,7 @@ public class Action {
     }
 
     public void explicitWait(WebDriver driver, WebElement element, int timeOut ) {
-        WebDriverWait wait = new WebDriverWait(driver,timeOut);
+        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(timeOut));
         wait.until(ExpectedConditions.visibilityOf(element));
     }
 
