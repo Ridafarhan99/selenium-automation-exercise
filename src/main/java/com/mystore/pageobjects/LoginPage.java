@@ -43,7 +43,8 @@ public class LoginPage extends BaseClass {
         return action.type(passwordInput, password);
     }
 
-    public void enterLoginButton(){
+    public DashboardPage clickLoginButton(){
         action.click(driver, loginButton);
+        return new DashboardPage();
     }
 }
