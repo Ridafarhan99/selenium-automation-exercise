@@ -11,6 +11,8 @@ public class DashboardPage extends BaseClass {
     @FindBy(xpath = "//input[@placeholder='Search']")
     public WebElement searchInput;
 
+    @FindBy(xpath = "//h6[normalize-space()='Dashboard']")
+    public WebElement dashboardHeader;
 
     public DashboardPage() {
         PageFactory.initElements(driver,this);
@@ -24,5 +26,9 @@ public class DashboardPage extends BaseClass {
 
     public String getTitle(){
         return action.getTitle(driver);
+    }
+
+    public void validateDashboardTitle(){
+        action.isDisplayed(driver, dashboardHeader);
     }
 }
