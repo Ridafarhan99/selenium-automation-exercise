@@ -28,7 +28,7 @@ public class DashboardPage extends BaseClass {
         return action.getTitle(driver);
     }
 
-    public void validateDashboardTitle(){
+    public void validateDashboardTitle() throws InterruptedException {
         action.isDisplayed(driver, dashboardHeader);
     }
 }

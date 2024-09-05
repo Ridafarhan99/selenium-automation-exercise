@@ -8,6 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 
 public class LoginPage extends BaseClass {
 
+
     @FindBy(xpath = "//input[@name='username']")
     public WebElement usernameInput;
 
@@ -20,15 +21,24 @@ public class LoginPage extends BaseClass {
     @FindBy(xpath = "//button[contains(@class,'orangehrm-login-button')]")
     public WebElement loginButton;
 
-
-    Action action = new Action();
-
     public LoginPage(){
+        this.driver = driver;
         PageFactory.initElements(driver, this);
     }
 
+
+    Action action = new Action();
+
+
     public boolean validateLogo(){
-        return action.isDisplayed(driver, orangeHRMLogo);
+        if (this.orangeHRMLogo == null) {
+            System.out.println("Username input element is null!");
+            return false;
+        } else {
+            // Proceed with actions
+            return action.isDisplayed(driver, this.orangeHRMLogo);
+        }
+
     }
 
     public String getTitle(){

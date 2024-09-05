@@ -18,7 +18,7 @@ public class BaseClass {
     public static Properties props = new Properties();
     public static WebDriver driver;
 
-    @BeforeSuite
+    @BeforeTest
     public void loadConfiguration() {
         try{
             System.out.println("Loading configuration...");
@@ -49,6 +49,11 @@ public class BaseClass {
         } else {
             throw new RuntimeException("Browser name specified in the config.properties file is not supported: " + browserName);
         }
+
+        //Maximize the screen
+        driver.manage().window().maximize();
+        //Delete all the cookies
+        driver.manage().deleteAllCookies();
 
         Action action = new Action();
         action.implicitWait(driver, 10);

@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 
 public class TestLoginPage extends BaseClass {
 
-    LoginPage loginPage = new LoginPage();;
+    LoginPage loginPage = new LoginPage();
 
     @BeforeMethod
     public void setup(){
@@ -24,7 +24,7 @@ public class TestLoginPage extends BaseClass {
 
     @Test
     public void verifyLogo() throws InterruptedException {
-        Thread.sleep(1000);
+        System.out.println("Running");
         boolean result = loginPage.validateLogo();
         Assert.assertTrue(result);
     }

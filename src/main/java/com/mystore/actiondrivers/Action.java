@@ -26,19 +26,20 @@ public class Action {
         act.moveToElement(ele).click().build().perform();
     }
 
-    public boolean findElement(WebDriver driver, WebElement ele){
+    public boolean findElement(WebDriver driver, WebElement ele) {
         boolean flag = false;
-        try{
-            ele.isDisplayed();
-            flag = true;
-        } catch(Exception e){
+        try {
+            System.out.println(ele);
+//            if (ele.isDisplayed()) {
+//                flag = true;
+//            }
+        } catch (Exception e) {
             flag = false;
         } finally {
             if (flag) {
-                System.out.println("Successfully Found element at");
-
+                System.out.println("Successfully Found element at: " + ele);
             } else {
-                System.out.println("Unable to locate element at");
+                System.out.println("Unable to locate element at: " + ele);
             }
         }
         return flag;
@@ -46,8 +47,12 @@ public class Action {
 
     public boolean isDisplayed(WebDriver driver, WebElement ele) {
         boolean flag = false;
+
         flag = findElement(driver, ele);
         if (flag) {
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+            wait.until(ExpectedConditions.visibilityOf(ele));
+
             flag = ele.isDisplayed();
             if (flag) {
                 System.out.println("The element is Displayed");
@@ -55,7 +60,7 @@ public class Action {
                 System.out.println("The element is not Displayed");
             }
         } else {
-            System.out.println("Not displayed ");
+            System.out.println("Not displayed");
         }
         return flag;
     }
