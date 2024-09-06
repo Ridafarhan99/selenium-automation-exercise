@@ -21,10 +21,10 @@ public class LoginPage extends BaseClass {
     @FindBy(xpath = "//button[contains(@class,'orangehrm-login-button')]")
     public WebElement loginButton;
 
-    private Action action;
+    private Action action = new Action();;
 
     public LoginPage(){
-        action = new Action();
+
         PageFactory.initElements(driver, this);
     }
 
