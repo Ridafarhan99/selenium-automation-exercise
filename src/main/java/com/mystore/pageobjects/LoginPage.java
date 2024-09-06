@@ -21,14 +21,12 @@ public class LoginPage extends BaseClass {
     @FindBy(xpath = "//button[contains(@class,'orangehrm-login-button')]")
     public WebElement loginButton;
 
+    private Action action;
+
     public LoginPage(){
-        this.driver = driver;
+        action = new Action();
         PageFactory.initElements(driver, this);
     }
-
-
-    Action action = new Action();
-
 
     public boolean validateLogo(){
         if (this.orangeHRMLogo == null) {
@@ -36,13 +34,13 @@ public class LoginPage extends BaseClass {
             return false;
         } else {
             // Proceed with actions
-            return action.isDisplayed(driver, this.orangeHRMLogo);
+            return action.isDisplayed(this.orangeHRMLogo);
         }
 
     }
 
     public String getTitle(){
-        return action.getTitle(driver);
+        return action.getTitle();
     }
 
     public boolean enterUsername( String userName){
@@ -54,7 +52,7 @@ public class LoginPage extends BaseClass {
     }
 
     public DashboardPage clickLoginButton(){
-        action.click(driver, loginButton);
+        action.click(loginButton);
         return new DashboardPage();
     }
 }
