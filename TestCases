@@ -18,7 +18,7 @@ Test Cases
 •	Verify that an error message is displayed indicating invalid credentials.
 
 
-3.	Add Employee Test Case:
+3.	Add Employee Test Case: [Done]
 •	Login to OrangeHRM.
 •	Navigate to the "PIM" menu and select "Add Employee".
 •	Fill in the required details (e.g., first name, last name).
