@@ -21,7 +21,12 @@ public class LoginPage extends BaseClass {
     @FindBy(xpath = "//button[contains(@class,'orangehrm-login-button')]")
     public WebElement loginButton;
 
-    private Action action = new Action();;
+    @FindBy(xpath = "//h6[text()='Dashboard']")
+    public WebElement dashboardTitle;
+
+
+
+    private Action action = new Action();
 
     public LoginPage(){
 
@@ -37,6 +42,10 @@ public class LoginPage extends BaseClass {
             return action.isDisplayed(this.orangeHRMLogo);
         }
 
+    }
+
+    public boolean validateDashboard(){
+        return action.isDisplayed(dashboardTitle);
     }
 
     public String getTitle(){
