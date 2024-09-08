@@ -32,6 +32,9 @@ public class LoginPage extends BaseClass {
     @FindBy(xpath = "//a[@class='oxd-userdropdown-link']")
     public List<WebElement> profileDropdownList;
 
+    @FindBy(xpath = "//div[contains(@class,'alert-content')]")
+    public WebElement alterContent;
+
 
 
     private Action action = new Action();
@@ -71,6 +74,10 @@ public class LoginPage extends BaseClass {
     public DashboardPage clickLoginButton(){
         action.click(loginButton);
         return new DashboardPage();
+    }
+
+    public String getInvalidText(){
+        return alterContent.getText();
     }
 
     public LoginPage logout(){
