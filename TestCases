@@ -11,7 +11,7 @@ Test Cases
 •	Logout the user.
 
 
-2.	Invalid Login Test Case (with invalid credential):
+2.	Invalid Login Test Case (with invalid credential): [Done]
 •	Open the OrangeHRM login page.
 •	Enter invalid credentials.
 •	Click the login button.
