@@ -6,6 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.List;
+
 public class LoginPage extends BaseClass {
 
 
@@ -23,6 +25,12 @@ public class LoginPage extends BaseClass {
 
     @FindBy(xpath = "//h6[text()='Dashboard']")
     public WebElement dashboardTitle;
+
+    @FindBy(xpath = "//span[contains(@class,'oxd-userdropdown-tab')]//p")
+    public WebElement userProfile;
+
+    @FindBy(xpath = "//a[@class='oxd-userdropdown-link']")
+    public List<WebElement> profileDropdownList;
 
 
 
@@ -52,16 +60,22 @@ public class LoginPage extends BaseClass {
         return action.getTitle();
     }
 
-    public boolean enterUsername( String userName){
-        return action.type(usernameInput, userName);
+    public void enterUsername(String userName){
+        action.type(usernameInput, userName);
     }
 
-    public boolean enterPassword( String password){
-        return action.type(passwordInput, password);
+    public void enterPassword(String password){
+        action.type(passwordInput, password);
     }
 
     public DashboardPage clickLoginButton(){
         action.click(loginButton);
         return new DashboardPage();
+    }
+
+    public LoginPage logout(){
+        action.click(userProfile);
+        action.click(profileDropdownList.get(3));
+        return new LoginPage();
     }
 }

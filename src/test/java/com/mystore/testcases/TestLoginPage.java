@@ -20,6 +20,7 @@ public class TestLoginPage extends BaseClass {
     @AfterTest
     public void tearDown() throws InterruptedException {
         Thread.sleep(2000);
+        driver.close();
         driver.quit();
     }
 
@@ -47,5 +48,11 @@ public class TestLoginPage extends BaseClass {
     public void validateDashboard(){
         boolean dashboardTitle = loginPage.validateDashboard();
         Assert.assertTrue(dashboardTitle);
+    }
+
+    @Test(priority = 5)
+    public void validateLogout() throws InterruptedException {
+        loginPage.logout();
+        getTitle();
     }
 }
