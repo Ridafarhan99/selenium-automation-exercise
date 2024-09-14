@@ -24,7 +24,7 @@ public class AddEmployee extends BaseClass {
     @FindBy(xpath = "//button[normalize-space()='Save']")
     private WebElement saveButton;
 
-    @FindBy(xpath = "//button[normalize-space()='Save']")
+    @FindBy(xpath = "//h6[contains(@class,'orangehrm-main-title')]")
     private WebElement personalDetailsHeading;
 
     public AddEmployee(){
@@ -52,6 +52,7 @@ public class AddEmployee extends BaseClass {
     }
 
     public String getText(){
-         return personalDetailsHeading.getText();
+        action.isDisplayed(personalDetailsHeading);
+        return personalDetailsHeading.getText();
     }
 }

@@ -3,6 +3,7 @@ package com.mystore.testcases;
 import com.mystore.base.BaseClass;
 import com.mystore.pageobjects.AddEmployee;
 import com.mystore.pageobjects.LoginPage;
+import com.mystore.pageobjects.SearchEmployee;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
@@ -10,16 +11,17 @@ import org.testng.annotations.Test;
 
 import java.time.Duration;
 
-public class TestAddEmployee extends BaseClass {
-    AddEmployee addEmployee;
+public class TestSearchEmployee extends BaseClass {
+    SearchEmployee searchEmployee;
     LoginPage loginPage;
-
+    AddEmployee addEmployee;
 
     @BeforeTest
     public void setup(){
         launchApp();
-        addEmployee = new AddEmployee();
+        searchEmployee = new SearchEmployee();
         loginPage = new LoginPage();
+        addEmployee = new AddEmployee();
     }
 
     @AfterTest
@@ -43,32 +45,29 @@ public class TestAddEmployee extends BaseClass {
     }
 
     @Test(priority = 3)
-    public void moveToAddEmployee(){
-        addEmployee.moveToAddEmployee();
+    public void moveToEmployeeList(){
+        searchEmployee.moveToEmployeeList();
     }
 
     @Test(priority = 4)
-    public void enterFirstName(){
-        addEmployee.enterUsername("John");
+    public void searchEmployeeName(){
+        searchEmployee.enterUsername("John");
     }
 
     @Test(priority = 5)
-    public void putLastName(){
-        addEmployee.enterLastname("Lenon");
+    public void clickSearchButton() throws InterruptedException {
+        searchEmployee.clickSearchButton();
+        Thread.sleep(3000);
     }
 
     @Test(priority = 6)
-    public void clickSaveButton(){
-        addEmployee.clickSaveButton();
-    }
+    public void getEmployeeListHeader(){
+        String actualText = searchEmployee.getRecordHeading();
+        String noText = "No";
 
-    @Test(priority = 7)
-    public void validatePersonalDetails() throws InterruptedException {
-        Thread.sleep(5000);
-        String actualText = addEmployee.getText();
-        String expectedText = "Personal Details";
-
-        Assert.assertEquals(actualText, expectedText);
+        //verifying 'No' should not contain in actual text
+        boolean validateText = !actualText.contains(noText);
+        Assert.assertTrue(validateText);
     }
 
 }
