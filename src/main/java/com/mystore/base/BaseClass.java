@@ -1,6 +1,8 @@
 package com.mystore.base;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -8,6 +10,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.*;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -19,6 +22,7 @@ public class BaseClass {
     public static Properties props = new Properties();
     public static WebDriver driver;
     public WebDriverWait wait;
+    public static Logger logger;
 
     public void loadConfiguration() {
         try{
@@ -50,11 +54,22 @@ public class BaseClass {
                         throw new RuntimeException("Unsupported browser: " + browserName);
                 }
             }
+
+            // for logging
+            logger = LogManager.getLogger("MyStoreProject");
+
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @AfterClass
+    public void tearDown() throws InterruptedException {
+        Thread.sleep(2000);
+        driver.close();
+        driver.quit();
     }
 
     public void launchApp() {

@@ -4,9 +4,7 @@ import com.mystore.base.BaseClass;
 import com.mystore.pageobjects.AddEmployee;
 import com.mystore.pageobjects.LoginPage;
 import org.testng.Assert;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import java.time.Duration;
 
@@ -23,10 +21,8 @@ public class TestAddEmployee extends BaseClass {
     }
 
     @AfterTest
-    public void tearDown() throws InterruptedException {
-        Thread.sleep(2000);
-        driver.close();
-        driver.quit();
+    public void teardown() throws InterruptedException {
+        tearDown();
     }
 
     @Test(priority = 1)
