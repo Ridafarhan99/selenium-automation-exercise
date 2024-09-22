@@ -16,6 +16,7 @@ public class TestAddEmployee extends BaseClass {
     @BeforeTest
     public void setup(){
         launchApp();
+        logger.info("URL Opened");
         addEmployee = new AddEmployee();
         loginPage = new LoginPage();
     }
@@ -60,7 +61,7 @@ public class TestAddEmployee extends BaseClass {
 
     @Test(priority = 7)
     public void validatePersonalDetails() throws InterruptedException {
-        Thread.sleep(5000);
+        Thread.sleep(10000);
         String actualText = addEmployee.getText();
         String expectedText = "Personal Details";
 

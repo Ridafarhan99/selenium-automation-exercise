@@ -48,7 +48,7 @@ public class AddEmployee extends BaseClass {
     }
 
     public void clickSaveButton(){
-        action.click(saveButton);
+        action.click1(saveButton, "Save");
     }
 
     public String getText(){
